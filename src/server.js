@@ -2,8 +2,6 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import rateLimiter from "./middleware/rateLimitMiddleware.js";
-
 // ! Utils
 import connectDB from "./config/dbConnection.js";
 
@@ -19,7 +17,6 @@ dotenv.config({ path: "./src/config/.env" });
 
 // ! Middleware
 app.use(express.json());
-app.use(rateLimiter);
 app.use("/api/notes", noteRouter);
 app.use(errMiddleware);
 
