@@ -10,13 +10,16 @@ import noteRouter from "./routes/noteRouter.js";
 
 // ! Middleware
 import errMiddleware from "./middleware/errMiddleware.js";
+import rateLimiter from "./middleware/ratelimitMiddleware.js";
 
 // ! App
 const app = express();
 dotenv.config({ path: "./src/config/.env" });
 
 // ! Middleware
+app.use("/api/welcome", (_, res) => res.status(200).json("Welcome to our App :)"));
 app.use(express.json());
+app.use(rateLimiter);
 app.use("/api/notes", noteRouter);
 app.use(errMiddleware);
 

@@ -6,7 +6,7 @@ import noteModel from "../models/noteModel.js";
 // ! @desc Get All Notes
 // ! @route GET /api/notes
 // ! @access Private
-const getAllNotes = asyncHandler(async (req, res) => {
+const getAllNotes = asyncHandler(async (_, res) => {
   const notes = await noteModel.find().sort({ createdAt: 1 });
   res.status(200).json({ notes: notes || [] });
 });
